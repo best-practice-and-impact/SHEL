@@ -1,3 +1,7 @@
-# Welcome to Microblog!
+# Stakeholder Engagement Log
 
-This is an example application featured in my [Flask Mega-Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world). See the tutorial for instructions on how to work with it.
+The project has been setup.
+
+## Progess
+
+
