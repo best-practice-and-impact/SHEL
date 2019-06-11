@@ -9,7 +9,7 @@ The project has been setup.
 * error handling
 * Heroku deployment
 
-## First- webform 
+## First- webform
 * date - datetime
 * stakeholder name - string
 * role - drop down
@@ -24,4 +24,4 @@ The project has been setup.
 4. flaskform
 
 ## Progess
-write what you have been doing here
+write what you have been doing here!
