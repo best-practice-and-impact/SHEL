@@ -25,6 +25,11 @@ class User(UserMixin, db.Model):
 def load_user(id):
     return User.query.get(int(id))
 
+class log_stakeholder(db.Model):
+    date = db.Column(db.Date, index=True)
+    stakeholder_person = db.Column(db.String(120), index=True)
+
+
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
