@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
-from app.models import User
+from app.models import User, Logstakeholder
 
 
 class LoginForm(FlaskForm):
@@ -29,7 +29,7 @@ class RegistrationForm(FlaskForm):
         if user is not None:
             raise ValidationError('Please use a different email address.')
 
-class Stakeholder_log(FlaskForm):
+class Stakeholderlog(FlaskForm):
     date = DateField('Date', validators=[DataRequired()])
     stakeholder_person = StringField('Name of Stakeholder', validators=[DataRequired()])
     submit = SubmitField('Submit Data')

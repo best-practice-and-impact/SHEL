@@ -2,8 +2,8 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm
-from app.models import User
+from app.forms import LoginForm, RegistrationForm, Stakeholderlog
+from app.models import User, Logstakeholder
 
 
 @app.route('/')
@@ -49,3 +49,13 @@ def register():
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
+@app.route('/Stakeholder_log', methods=['GET', 'POST'])
+def Stakeholder_log():
+    form = Stakeholderlog()
+    if form.validate_on_submit():
+            log = Logstakeholder(body=form.logstakeholder.data, author=current_user)
+            db.session.add(log)
+            db.session.commit()
+            return redirect(url_for('index'))
+    return render_template('stakeholder_log.html', title='Log Form', form=form)
