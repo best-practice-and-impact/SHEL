@@ -54,8 +54,13 @@ def register():
 def Stakeholder_log():
     form = Stakeholderlog()
     if form.validate_on_submit():
-            log = Logstakeholder(body=form.logstakeholder.data, author=current_user)
+            log = Logstakeholder(date=form.date.data, stakeholder_person=form.stakeholder_person.data)
             db.session.add(log)
             db.session.commit()
+            flash('Data has been submitted!!!')
             return redirect(url_for('index'))
     return render_template('stakeholder_log.html', title='Log Form', form=form)
+
+@app.route('/display')
+def display():
+    return render_template('display.html')

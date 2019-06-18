@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1> Display of the data for development </h1>
+
+<div class="col-lg-6">
+            <h3>Manage Existing Accounts</h3>
+
+              <table class="table small">
+              <thead>
+                  <tr>
+                    <th>username</th>
+                    <th>email</th>
+                  </tr>
+              </thead>
+              {% for username, email, in users %}
+                      <tr>
+                         <th> {{ username }} </th>
+                         <td> {{ email }} </td>
+                      </tr>
+              {% endfor %}
+              </table>
+      </div>
+
+<h3> More! </h3>
+{% endblock %}

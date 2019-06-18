@@ -23,5 +23,7 @@ The project has been setup.
 3. model (database)
 4. flaskform
 
-## Progess
-write what you have been doing here!
+
+## To delete databases
+db.reflect()
+db.drop_all()
