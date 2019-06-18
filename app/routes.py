@@ -42,13 +42,14 @@ def register():
         return redirect(url_for('index'))
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = User(username=form.username.data, email=form.email.data)
+        user = User(username=form.username.data, email=form.email.data, is_admin = "False")
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register', form=form)
+
 
 @app.route('/Stakeholder_log', methods=['GET', 'POST'])
 def Stakeholder_log():
@@ -63,4 +64,20 @@ def Stakeholder_log():
 
 @app.route('/display')
 def display():
-    return render_template('display.html')
+    posts = User.query.all()
+    return render_template('display.html', posts=posts)
+
+
+@app.route('/register_admin', methods=['GET', 'POST'])
+def register_admin():
+    if current_user.is_authenticated:
+        return redirect(url_for('index'))
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        user = User(username=form.username.data, email=form.email.data, is_admin = "True")
+        user.set_password(form.password.data)
+        db.session.add(user)
+        db.session.commit()
+        flash('Congratulations, you are now a registered user!')
+        return redirect(url_for('login'))
+    return render_template('register.html', title='Register Admin User', form=form)
