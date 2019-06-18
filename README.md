@@ -27,3 +27,8 @@ The project has been setup.
 ## To delete databases
 db.reflect()
 db.drop_all()
+
+
+## Created admin user
+username = admin
+password = 789

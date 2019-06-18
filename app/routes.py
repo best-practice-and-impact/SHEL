@@ -63,9 +63,15 @@ def Stakeholder_log():
     return render_template('stakeholder_log.html', title='Log Form', form=form)
 
 @app.route('/display')
+@login_required
 def display():
-    posts = User.query.all()
-    return render_template('display.html', posts=posts)
+    if current_user.is_admin == "True":
+        posts = User.query.all()
+        return render_template('display.html', posts=posts)
+    else:
+        flash("You don't have permission!!!!!")
+        return redirect(url_for('index'))
+
 
 
 @app.route('/register_admin', methods=['GET', 'POST'])
