@@ -66,8 +66,9 @@ def Stakeholder_log():
 @login_required
 def display():
     if current_user.is_admin == "True":
-        posts = User.query.all()
-        return render_template('display.html', posts=posts)
+        people = User.query.all()
+        shel = Logstakeholder.query.all()
+        return render_template('display.html', people=people, shel=shel)
     else:
         flash("You don't have permission!!!!!")
         return redirect(url_for('index'))

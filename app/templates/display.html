@@ -4,11 +4,20 @@
 
 <h1> Display of the data for development </h1>
 
-{% for post in posts %}
+
+<h3> A list of the current registered users </h3>
+{% for post in people %}
    <p>
    {{ post.username}} says: <b>{{ post.email }} is {{ post.is_admin }}</b>
    </p>
    {% endfor %}
 
-<h3> The end! </h3>
+<h3> The SHEL data </h3>
+
+{% for log in shel %}
+<p>
+{{ log.date }} says:  <b>{{ log.stakeholder_person }} is {{ log.user_id}} </b>
+</p>
+{% endfor %}
+
 {% endblock %}

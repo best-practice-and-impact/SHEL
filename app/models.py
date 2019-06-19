@@ -29,6 +29,7 @@ def load_user(id):
 class Logstakeholder(db.Model):
     date = db.Column(db.String(120), index=True, primary_key=True)
     stakeholder_person = db.Column(db.String(120), index=True)
+    
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
