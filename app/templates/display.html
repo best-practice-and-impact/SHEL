@@ -8,7 +8,7 @@
 <h3> A list of the current registered users </h3>
 {% for post in people %}
    <p>
-   {{ post.username}} says: <b>{{ post.email }} is {{ post.is_admin }}</b>
+   {{ post.username}} says: <b>{{ post.email }} is {{ post.is_admin }} {{ post.id }}</b>
    </p>
    {% endfor %}
 
@@ -16,7 +16,9 @@
 
 {% for log in shel %}
 <p>
-{{ log.date }} says:  <b>{{ log.stakeholder_person }} is {{ log.user_id}} </b>
+{{ log.date }} says:  <b>{{ log.stakeholder_person }} is {{ log.user_id}} and</b>
+<br>
+{{ log.organisation }} and {{ log.stance }}
 </p>
 {% endfor %}
 

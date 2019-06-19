@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User, Logstakeholder
 
@@ -30,6 +30,10 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class Stakeholderlog(FlaskForm):
-    date = StringField('Date', validators=[DataRequired()])
+    date = DateField('Date, example 17/02/2019', format='%d/%m/%Y', validators=[DataRequired()])
     stakeholder_person = StringField('Name of Stakeholder', validators=[DataRequired()])
+    organisation = SelectField('The government department',
+    choices=[('DWP', 'DWP'), ('HMRC', 'The treasury!'), ('BEIS', 'BEIS'), ('DfS', 'DfS')], validators=[DataRequired()])
+    stance = SelectField('What was there stance on quality',
+    choices=[('1', 'Very Bad'), ('2', 'Bad'), ('3', 'Neutral'), ('3', 'Pretty Good'), ('5', 'Good!')])
     submit = SubmitField('Submit Data')

@@ -7,11 +7,31 @@
   <p>
     {{ form.date.label }}<br>
     {{ form.date(size=32) }}<br>
+    {% for error in form.date.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
   </p>
   <p>
     {{ form.stakeholder_person.label }}<br>
     {{ form.stakeholder_person(size=32) }}<br>
+    {% for error in form.stakeholder_person.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>
+    {{ form.organisation.label }}<br>
+    {{ form.organisation(size=32) }}<br>
+    {% for error in form.organisation.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>
+    {{ form.stance.label }}<br>
+    {{ form.stance(size=32) }}<br>
+    {% for error in form.stance.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
   </p>
   <p> {{ form.submit() }} </p>
   </form>
-{% endblock %}  
+{% endblock %}

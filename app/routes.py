@@ -55,7 +55,8 @@ def register():
 def Stakeholder_log():
     form = Stakeholderlog()
     if form.validate_on_submit():
-            log = Logstakeholder(date=form.date.data, stakeholder_person=form.stakeholder_person.data)
+            log = Logstakeholder(date=form.date.data, stakeholder_person=form.stakeholder_person.data, user_id=current_user.username,
+            organisation=form.organisation.data, stance=form.stance.data )
             db.session.add(log)
             db.session.commit()
             flash('Data has been submitted!!!')

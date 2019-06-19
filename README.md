@@ -4,7 +4,8 @@ The project has been setup.
 
 ## Tasks
 * admin user - Jack
-* bootstrap - Josh
+* bootstrap - Josh]
+* TABLE for the data
 * email verficartion - Anthony
 * error handling
 * Heroku deployment
@@ -31,4 +32,4 @@ db.drop_all()
 
 ## Created admin user
 username = admin
-password = 789
+password = admin
