@@ -3,12 +3,12 @@
 The project has been setup.
 
 ## Tasks
-* admin user - Jack
-* bootstrap - Josh]
-* TABLE for the data
-* email verficartion - Anthony
-* error handling
-* Heroku deployment
+- [x] admin user - Jack
+- [x] bootstrap - Josh
+- [ ] TABLE for the data
+- [ ] email verficartion - Anthony
+- [ ] error handling
+- [ ] Heroku deployment
 
 ## First- webform
 * date - datetime

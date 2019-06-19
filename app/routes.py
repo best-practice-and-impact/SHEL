@@ -56,7 +56,7 @@ def Stakeholder_log():
     form = Stakeholderlog()
     if form.validate_on_submit():
             log = Logstakeholder(date=form.date.data, stakeholder_person=form.stakeholder_person.data, user_id=current_user.username,
-            organisation=form.organisation.data, stance=form.stance.data, bpier=form.bpier.data )
+            organisation=form.organisation.data, stance=form.stance.data, bpier=" , ".join(form.bpier.data) )
             db.session.add(log)
             db.session.commit()
             flash('Data has been submitted!!!')
