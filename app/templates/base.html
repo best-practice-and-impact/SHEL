@@ -1,14 +1,14 @@
 <html>
     <head>
         {% if title %}
-        <title>{{ title }} - Microblog</title>
+        <title>{{ title }} - SHEL</title>
         {% else %}
-        <title>Welcome to Microblog</title>
+        <title>Welcome to SHEL</title>
         {% endif %}
     </head>
     <body>
         <div>
-            Microblog:
+            SHEL:
             <a href="{{ url_for('index') }}">Home</a>
             {% if current_user.is_anonymous %}
             <a href="{{ url_for('login') }}">Login</a>
@@ -17,7 +17,7 @@
             {% if current_user.is_admin == "True" %}
             <a href="{{ url_for('display') }}">Data</a>
             {% endif %}
-            <a href="{{ url_for('logout1') }}">Logout</a>            
+            <a href="{{ url_for('logout1') }}">Logout</a>
             {% endif %}
         </div>
         <hr>
