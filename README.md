@@ -18,6 +18,7 @@ The project has been setup.
 * discussion points - string
 * bpi member - dictionaries
 * Stance on Quality - drop down
+* bpi contact
 
 1. template
 2. route

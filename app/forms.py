@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, SelectField
+from wtforms import StringField, PasswordField, BooleanField, SubmitField, DateField, SelectField, SelectMultipleField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo
 from app.models import User, Logstakeholder
 
@@ -36,4 +36,6 @@ class Stakeholderlog(FlaskForm):
     choices=[('DWP', 'DWP'), ('HMRC', 'The treasury!'), ('BEIS', 'BEIS'), ('DfS', 'DfS')], validators=[DataRequired()])
     stance = SelectField('What was there stance on quality',
     choices=[('1', 'Very Bad'), ('2', 'Bad'), ('3', 'Neutral'), ('3', 'Pretty Good'), ('5', 'Good!')])
+    bpier = SelectMultipleField('Who from BPi was there',
+    choices=[('James', 'James'), ('Jack', 'Jack'), ('Rebecca', 'Rebecca'), ('Josh', 'Josh'), ('Catrin', 'Catrin'), ('Louise', 'Louise')] )
     submit = SubmitField('Submit Data')

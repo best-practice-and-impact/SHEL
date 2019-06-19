@@ -33,6 +33,7 @@ class Logstakeholder(db.Model):
     organisation = db.Column(db.String(120), index=True)
     stance = db.Column(db.Integer)
     user_id = db.Column(db.String(120), db.ForeignKey('user.username'))
+    bpier = db.Column(db.String(120))
 
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
