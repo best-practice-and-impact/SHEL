@@ -5,8 +5,9 @@ The project has been setup.
 ## Tasks
 - [x] admin user - Jack
 - [x] bootstrap - Josh
-- [ ] TABLE for the data
-- [ ] email verification - Anthony
+- [x] TABLE for the data
+- [ ] Advanced table functions, filters, DELETE
+- [ ] email verification, password reset - Anthony
 - [ ] calendar for SHEL form
 - [ ] error handling
 - [ ] Heroku deployment
