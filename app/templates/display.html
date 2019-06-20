@@ -1,25 +1,59 @@
 {% extends "base.html" %}
 
-{% block content %}
+{% block app_content %}
 
 <h1> Display of the data for development </h1>
 
 
-<h3> A list of the current registered users </h3>
-{% for post in people %}
-   <p>
-   {{ post.username}} says: <b>{{ post.email }} is {{ post.is_admin }} {{ post.id }}</b>
-   </p>
-   {% endfor %}
 
-<h3> The SHEL data </h3>
+<div class="row">
+  <div class="col-md-4">
+    <table class="table table-striped" id="owned_stock_table">
+      <thead>
+        <h3> A list of the current registered users </h3>
+        <tr>
+          <th>User</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for peopl in people %}
+        <tr>
+          <td>{{ peopl.username }}</td>
+          <td>{{ peopl.email }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 
-{% for log in shel %}
-<p>
-{{ log.date }} says:  <b>{{ log.stakeholder_person }} is {{ log.user_id}} and</b>
-<br>
-{{ log.organisation }} and {{ log.stance }} and {{ log.bpier}}
-</p>
-{% endfor %}
+<div class="row">
+  <div class="col-md-4">
+    <table class="table table-striped" id="owned_stock_table">
+      <thead>
+        <h3> The SHEL Data </h3>
+        <tr>
+          <th>Date</th>
+          <th>Stakeholder</th>
+          <th>Department</th>
+          <th>Quality Stance</th>
+          <th>BPIer</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for log in shel %}
+        <tr>
+          <td>{{ log.date}}</td>
+          <td>{{ log.stakeholder_person }}</td>
+          <td>{{ log.organisation }}</td>
+          <td>{{ log.stance }}</td>
+          <td>{{ log.bpier }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
 
 {% endblock %}

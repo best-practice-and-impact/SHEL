@@ -6,7 +6,8 @@ The project has been setup.
 - [x] admin user - Jack
 - [x] bootstrap - Josh
 - [ ] TABLE for the data
-- [ ] email verficartion - Anthony
+- [ ] email verification - Anthony
+- [ ] calendar for SHEL form
 - [ ] error handling
 - [ ] Heroku deployment
 
