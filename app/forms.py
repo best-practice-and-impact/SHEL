@@ -35,7 +35,14 @@ class Stakeholderlog(FlaskForm):
     organisation = SelectField('The government department',
     choices=[('DWP', 'DWP'), ('HMRC', 'The treasury!'), ('BEIS', 'BEIS'), ('DfS', 'DfS')], validators=[DataRequired()])
     stance = SelectField('What was there stance on quality',
-    choices=[('1', 'Very Bad'), ('2', 'Bad'), ('3', 'Neutral'), ('3', 'Pretty Good'), ('5', 'Good!')])
+    choices=[('1', 'Very Bad'), ('2', 'Bad'), ('3', 'Neutral'), ('4', 'Pretty Good'), ('5', 'Good!')])
     bpier = SelectMultipleField('Who from BPi was there',
     choices=[('James', 'James'), ('Jack', 'Jack'), ('Rebecca', 'Rebecca'), ('Josh', 'Josh'), ('Catrin', 'Catrin'), ('Louise', 'Louise')] )
     submit = SubmitField('Submit Data')
+
+class FilterTable(FlaskForm):
+    department = SelectMultipleField('The government department',
+    choices=[('DWP', 'DWP'), ('HMRC', 'The treasury!'), ('BEIS', 'BEIS'), ('DfS', 'DfS')])
+    stance = SelectField('What was there stance on quality',
+    choices=[("0", "Select Option"),('1', 'Very Bad'), ('2', 'Bad'), ('3', 'Neutral'), ('4', 'Pretty Good'), ('5', 'Good!')])
+    submit = SubmitField("Submit Filter")

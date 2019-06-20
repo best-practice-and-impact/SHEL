@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
+
 
 <h1> Display of the data for development </h1>
 
@@ -29,6 +31,12 @@
 </div>
 
 <div class="row">
+    <div class="col-md-4">
+        {{ wtf.quick_form(form) }}
+    </div>
+</div>
+
+<div class="row">
   <div class="col-md-4">
     <table class="table table-striped" id="owned_stock_table">
       <thead>
@@ -44,11 +52,21 @@
       <tbody>
         {% for log in shel %}
         <tr>
-          <td>{{ log.date}}</td>
-          <td>{{ log.stakeholder_person }}</td>
-          <td>{{ log.organisation }}</td>
-          <td>{{ log.stance }}</td>
-          <td>{{ log.bpier }}</td>
+          {% if log.organisation is in department %}
+            {% if log.stance == stance %}
+              <td>{{ log.date}}</td>
+              <td>{{ log.stakeholder_person }}</td>
+              <td>{{ log.organisation }}</td>
+              <td>{{ log.stance }}</td>
+              <td>{{ log.bpier }}</td>
+            {% elif stance == 0 %}
+              <td>{{ log.date}}</td>
+              <td>{{ log.stakeholder_person }}</td>
+              <td>{{ log.organisation }}</td>
+              <td>{{ log.stance }}</td>
+              <td>{{ log.bpier }}</td>
+            {% endif %}
+          {% endif %}
         </tr>
         {% endfor %}
       </tbody>

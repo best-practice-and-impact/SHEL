@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, Stakeholderlog
+from app.forms import LoginForm, RegistrationForm, Stakeholderlog, FilterTable
 from app.models import User, Logstakeholder
 
 
@@ -63,13 +63,26 @@ def Stakeholder_log():
             return redirect(url_for('index'))
     return render_template('stakeholder_log.html', title='Log Form', form=form)
 
-@app.route('/display')
+@app.route('/display', methods=["GET","POST"])
 @login_required
 def display():
     if current_user.is_admin == "True":
+        form = FilterTable()
+        department = []
+        stance = 0
+        if form.validate_on_submit():
+            department = form.department.data
+            stance = int(form.stance.data)
+        else:
+            pass
+
+        if len(department) == 0:
+            department = ["DWP", "HMRC", "BEIS", "DfS"]
+        else:
+            pass
         people = User.query.all()
         shel = Logstakeholder.query.all()
-        return render_template('display.html', people=people, shel=shel)
+        return render_template('display.html', form=form, people=people, shel=shel, department=department, stance=stance)
     else:
         flash("You don't have permission!!!!!")
         return redirect(url_for('index'))
