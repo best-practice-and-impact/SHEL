@@ -18,9 +18,9 @@
             </div>
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('Stakeholder_log') }}">Stakeholder Log Form</a></li>
-                    {% if current_user.is_admin == "True" %}
-                    <li><a href="{{ url_for('display') }}">SHEL Data</a></li>
+			<li><a href="{{ url_for('Stakeholder_log') }}">Stakeholder Log Form</a></li>
+                   {% if current_user.is_admin == "True" %}
+                   	 <li><a href="{{ url_for('display') }}">SHEL Data</a></li>
                     {% endif %}
                 </ul>
                 <ul class="nav navbar-nav navbar-right">

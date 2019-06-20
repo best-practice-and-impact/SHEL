@@ -52,6 +52,7 @@ def register():
 
 
 @app.route('/Stakeholder_log', methods=['GET', 'POST'])
+@login_required
 def Stakeholder_log():
     form = Stakeholderlog()
     if form.validate_on_submit():
