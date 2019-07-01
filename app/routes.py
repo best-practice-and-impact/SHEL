@@ -57,10 +57,10 @@ def Stakeholder_log():
     form = Stakeholderlog()
     if form.validate_on_submit():
             log = Logstakeholder(date=form.date.data, stakeholder_person=form.stakeholder_person.data, user_id=current_user.username,
-            organisation=form.organisation.data, stance=form.stance.data, meeting=form.meeting.data, bpier=" , ".join(form.bpier.data) )
+            organisation=form.organisation.data, stance=form.stance.data, meeting=form.meeting.data, keypoints=form.keypoints.data, bpier=" , ".join(form.bpier.data) )
             db.session.add(log)
             db.session.commit()
-            flash('Data has been submitted!!!')
+            flash('Data has been submitted!')
             return redirect(url_for('index'))
     return render_template('stakeholder_log.html', title='Log Form', form=form)
 
@@ -85,7 +85,7 @@ def display():
         shel = Logstakeholder.query.all()
         return render_template('display.html', form=form, people=people, shel=shel, department=department, stance=stance)
     else:
-        flash("You don't have permission!!!!!")
+        flash("You don't have permission!")
         return redirect(url_for('index'))
 
 
@@ -100,6 +100,6 @@ def register_admin():
         user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
-        flash('Congratulations, you are now a registered Admin!')
+        flash('Congratulations, you are now a registered admin!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register Admin User', form=form)

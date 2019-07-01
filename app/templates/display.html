@@ -4,15 +4,15 @@
 {% block app_content %}
 
 
-<h1> Display of the data for development </h1>
+<h1> <center> Display of the data for development </h1> </center>
 
 
 
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-4 col-lg-offset-4">
     <table class="table table-striped" id="owned_stock_table">
       <thead>
-        <h3> A list of the current registered users </h3>
+        <center><h3> Current registered users </h3></center>
         <tr>
           <th>User</th>
           <th>Email</th>
@@ -31,13 +31,13 @@
 </div>
 <hr>
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 col-lg-offset-4">
         {{ wtf.quick_form(form) }}
     </div>
 </div>
 <hr>
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-4 col-lg-offset-4">
     <table class="table table-striped" id="owned_stock_table">
       <thead>
         <h3> The SHEL Data </h3>
@@ -45,8 +45,9 @@
           <th>Date</th>
           <th>Stakeholder</th>
           <th>Department</th>
-          <th>Quality Stance</th>
-          <th>Meeting Format</th>
+          <th>Quality stance</th>
+          <th>Meeting format</th>
+          <th>Keypoints from meeting</th>
           <th>BPIer</th>
         </tr>
       </thead>
@@ -60,6 +61,7 @@
               <td>{{ log.organisation }}</td>
               <td>{{ log.stance }}</td>
               <td>{{ log.meeting }}</td>
+              <td>{{log.keypoints }}</td>
               <td>{{ log.bpier }}</td>
             {% elif stance == 0 %}
               <td>{{ log.date}}</td>
@@ -67,6 +69,7 @@
               <td>{{ log.organisation }}</td>
               <td>{{ log.stance }}</td>
               <td>{{ log.meeting }}</td>
+              <td>{{ log.keypoints }}</td>
               <td>{{ log.bpier }}</td>
             {% endif %}
           {% endif %}

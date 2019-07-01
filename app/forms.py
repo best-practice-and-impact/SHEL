@@ -31,20 +31,21 @@ class RegistrationForm(FlaskForm):
 
 class Stakeholderlog(FlaskForm):
     date = DateField('Date, example 17/02/2019', format='%d/%m/%Y', validators=[DataRequired()])
-    stakeholder_person = StringField('Name of Stakeholder', validators=[DataRequired()])
-    organisation = SelectField('The government department',
+    stakeholder_person = StringField('Stakeholder name', validators=[DataRequired()])
+    organisation = SelectField('Organisation',
     choices=[('DWP', 'DWP'), ('HMRC', 'The treasury!'), ('BEIS', 'BEIS'), ('DfS', 'DfS')], validators=[DataRequired()])
-    stance = SelectField('What was there stance on quality',
-    choices=[('1', 'Very Bad'), ('2', 'Bad'), ('3', 'Neutral'), ('4', 'Pretty Good'), ('5', 'Good!')])
+    stance = SelectField('Engagement with quality',
+    choices=[('1', 'Resistant'), ('2', 'Cautious'), ('3', 'Neutral'), ('4', 'Engaged'), ('5', 'Champion')])
     meeting = SelectField('Meeting format',
-    choices=[('Informal', 'Informal'), ('One to one', 'One to one'), ('Roundtable', 'Roundtable'), ('Workshop', 'Workshop')])
-    bpier = SelectMultipleField('Who from BPi was there',
+    choices=[ ('Conference', 'Conference'), ('Informal', 'Informal'), ('One to one', 'One to one'), ('Roundtable', 'Roundtable'), ('Seminar', 'Seminar'), ('Workshop', 'Workshop'),])
+    keypoints = StringField('Key points from meeting', validators=[DataRequired()])
+    bpier = SelectMultipleField('BPI attendee(s)',
     choices=[('James', 'James'), ('Jack', 'Jack'), ('Rebecca', 'Rebecca'), ('Josh', 'Josh'), ('Catrin', 'Catrin'), ('Louise', 'Louise')] )
     submit = SubmitField('Submit Data')
 
 class FilterTable(FlaskForm):
-    department = SelectMultipleField('The government department',
+    department = SelectMultipleField('Organisation',
     choices=[('DWP', 'DWP'), ('HMRC', 'The treasury!'), ('BEIS', 'BEIS'), ('DfS', 'DfS')])
-    stance = SelectField('What was there stance on quality',
-    choices=[("0", "Select Option"),('1', 'Very Bad'), ('2', 'Bad'), ('3', 'Neutral'), ('4', 'Pretty Good'), ('5', 'Good!')])
+    stance = SelectField('Engagement with quality',
+    choices=[("0", "Select Option"),('1', 'Resistant'), ('2', 'Cautious'), ('3', 'Neutral'), ('4', 'Engaged'), ('5', 'Champion')])
     submit = SubmitField("Submit Filter")
