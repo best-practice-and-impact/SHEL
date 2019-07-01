@@ -27,7 +27,7 @@ The project has been setup.
 * Stance on Quality - drop down
 * bpi contact
 
-1. template
+1. template.
 2. route
 3. model (database)
 4. flaskform
