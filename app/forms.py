@@ -36,6 +36,8 @@ class Stakeholderlog(FlaskForm):
     choices=[('DWP', 'DWP'), ('HMRC', 'The treasury!'), ('BEIS', 'BEIS'), ('DfS', 'DfS')], validators=[DataRequired()])
     stance = SelectField('What was there stance on quality',
     choices=[('1', 'Very Bad'), ('2', 'Bad'), ('3', 'Neutral'), ('4', 'Pretty Good'), ('5', 'Good!')])
+    meeting = SelectField('Meeting format',
+    choices=[('Informal', 'Informal'), ('One to one', 'One to one'), ('Roundtable', 'Roundtable'), ('Workshop', 'Workshop')])
     bpier = SelectMultipleField('Who from BPi was there',
     choices=[('James', 'James'), ('Jack', 'Jack'), ('Rebecca', 'Rebecca'), ('Josh', 'Josh'), ('Catrin', 'Catrin'), ('Louise', 'Louise')] )
     submit = SubmitField('Submit Data')

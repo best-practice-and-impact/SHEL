@@ -6,11 +6,16 @@ The project has been setup.
 - [x] admin user - Jack
 - [x] bootstrap - Josh
 - [x] TABLE for the data
-- [ ] Advanced table functions, filters, DELETE
-- [ ] email verification, password reset - Anthony
-- [ ] calendar for SHEL form
+- [x] Heroku deployment
+- [ ] Advanced table functions, filters, DELETE JS
+- [ ] email verification, password reset - AE, JS
+- [ ] calendar for SHEL form JH
 - [ ] error handling
-- [ ] Heroku deployment
+- [ ] Analytics
+- [ ] Finish webform  AE
+- [ ] Team updates form homepage JH
+- [ ] TESTING!!!! Everyone
+- [ ] Download data!
 
 ## First- webform
 * date - datetime
@@ -35,7 +40,7 @@ db.drop_all()
 
 ## Created admin user
 username = admin
-password = admin
+password = 123 or admin
 
 Jack - Checking I am working on the correct branch
 Jack - Checked that the changes run on another computer

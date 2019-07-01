@@ -46,6 +46,7 @@
           <th>Stakeholder</th>
           <th>Department</th>
           <th>Quality Stance</th>
+          <th>Meeting Format</th>
           <th>BPIer</th>
         </tr>
       </thead>
@@ -58,12 +59,14 @@
               <td>{{ log.stakeholder_person }}</td>
               <td>{{ log.organisation }}</td>
               <td>{{ log.stance }}</td>
+              <td>{{ log.meeting }}</td>
               <td>{{ log.bpier }}</td>
             {% elif stance == 0 %}
               <td>{{ log.date}}</td>
               <td>{{ log.stakeholder_person }}</td>
               <td>{{ log.organisation }}</td>
               <td>{{ log.stance }}</td>
+              <td>{{ log.meeting }}</td>
               <td>{{ log.bpier }}</td>
             {% endif %}
           {% endif %}
