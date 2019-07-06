@@ -30,7 +30,7 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Please use a different email address.')
 
 class Stakeholderlog(FlaskForm):
-    date = DateField('Date, example 17/02/2019', format='%d/%m/%Y', validators=[DataRequired()])
+    date = StringField('Date, example 17/02/2019', id='datepick', validators=[DataRequired()])
     stakeholder_person = StringField('Stakeholder name', validators=[DataRequired()])
     organisation = SelectField('Organisation',
     choices=[('DWP', 'DWP'), ('HMRC', 'The treasury!'), ('BEIS', 'BEIS'), ('DfS', 'DfS')], validators=[DataRequired()])

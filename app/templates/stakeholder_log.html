@@ -1,23 +1,27 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
-
-{% block scripts %}
+{% block head %}
   {{ super() }}
-  {{ datepicker.loader() }} {# to load jQuery-ui #}
-  {{ datepicker.picker(id=".dp") }}
+  <link type="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
 {% endblock %}
 
 {% block app_content %}
-  <form action="" method="post" novalidate class="col-md-4 col-lg-offset-4">
-    <input type="text" class="form-control dp" name="test" />
-  </form>
-  <br>
-    <h1><center> Data entry fields</h1></center> <br>
+    <h1>Register</h1>
     <div class="row">
-        <div class="col-md-4 col-lg-offset-4">
+        <div class="col-md-4">
             {{ wtf.quick_form(form) }}
         </div>
     </div>
-    <br>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      $('#datepick').datetimepicker();
+    });
+  </script>
 {% endblock %}
