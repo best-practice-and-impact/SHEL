@@ -1,7 +1,18 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+
+{% block scripts %}
+  {{ super() }}
+  {{ datepicker.loader() }} {# to load jQuery-ui #}
+  {{ datepicker.picker(id=".dp") }}
+{% endblock %}
+
 {% block app_content %}
+  <form action="" method="post" novalidate class="col-md-4 col-lg-offset-4">
+    <input type="text" class="form-control dp" name="test" />
+  </form>
+  <br>
     <h1><center> Data entry fields</h1></center> <br>
     <div class="row">
         <div class="col-md-4 col-lg-offset-4">

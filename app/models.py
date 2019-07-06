@@ -27,6 +27,7 @@ def load_user(id):
     return User.query.get(int(id))
 
 class Logstakeholder(db.Model):
+    test = db.Column(db.String)
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.Date)
     stakeholder_person = db.Column(db.String(120), index=True)

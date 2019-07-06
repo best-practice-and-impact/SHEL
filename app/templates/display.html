@@ -42,6 +42,7 @@
       <thead>
         <h3> The SHEL Data </h3>
         <tr>
+          <th>test</th>
           <th>Date</th>
           <th>Stakeholder</th>
           <th>Department</th>
@@ -56,6 +57,7 @@
         <tr>
           {% if log.organisation is in department %}
             {% if log.stance == stance %}
+              <td>{{ log.test }}</td>
               <td>{{ log.date}}</td>
               <td>{{ log.stakeholder_person }}</td>
               <td>{{ log.organisation }}</td>
@@ -64,6 +66,7 @@
               <td>{{log.keypoints }}</td>
               <td>{{ log.bpier }}</td>
             {% elif stance == 0 %}
+              <td>{{ log.test }}</td>
               <td>{{ log.date}}</td>
               <td>{{ log.stakeholder_person }}</td>
               <td>{{ log.organisation }}</td>

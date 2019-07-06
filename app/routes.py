@@ -4,6 +4,7 @@ from werkzeug.urls import url_parse
 from app import app, db
 from app.forms import LoginForm, RegistrationForm, Stakeholderlog, FilterTable
 from app.models import User, Logstakeholder
+from flask_datepicker import datepicker
 
 
 @app.route('/')
