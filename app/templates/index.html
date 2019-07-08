@@ -29,5 +29,8 @@
         </div>
       </div>
 
+    {% for post in posts %}
+    <h1> {{ post.body }} </h1>
+    {% endfor %}
 
 {% endblock %}

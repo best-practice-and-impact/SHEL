@@ -12,7 +12,8 @@ from flask_datepicker import datepicker
 @login_required
 def index():
     posts = Post.query.all()
-    return render_template('index.html', title='Home', posts=posts)
+    event = Post.query.first()
+    return render_template('index.html', title='Home', posts=posts, event=event)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -84,7 +85,7 @@ def display():
         else:
             pass
         shel = Logstakeholder.query.all()
-        return render_template('display.html', form=form, people=people, shel=shel, department=department, stance=stance)
+        return render_template('display.html', form=form, shel=shel, department=department, stance=stance)
     else:
         flash("You don't have permission!")
         return redirect(url_for('index'))
