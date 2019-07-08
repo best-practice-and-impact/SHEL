@@ -2,8 +2,8 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, Stakeholderlog, FilterTable
-from app.models import User, Logstakeholder
+from app.forms import LoginForm, RegistrationForm, Stakeholderlog, FilterTable, PostForm
+from app.models import User, Logstakeholder, Post
 from flask_datepicker import datepicker
 
 
@@ -89,7 +89,20 @@ def display():
         flash("You don't have permission!")
         return redirect(url_for('index'))
 
-
+@app.route('/admin', methods=['GET', 'POST'])
+def admin():
+    if current_user.is_admin == "True":
+        form = PostForm()
+        if form.validate_on_submit():
+            post = Post(body=form.post.data, author=current_user)
+            db.session.add(post)
+            db.session.commit()
+            flash("Your post is now live!")
+            return redirect(url_for('admin'))
+        return render_template('admin.html', title='Admin Page', form=form)
+    else:
+        flask("You are not an admin, you don't have permission to view this page")
+        return redirect(url_for('index'))
 
 @app.route('/register_admin', methods=['GET', 'POST'])
 def register_admin():
