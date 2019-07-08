@@ -14,7 +14,7 @@ The project has been setup.
 - [ ] Analytics
 - [ ] Finish webform  AE
 - [ ] Team updates form homepage JH
-- [ ] TESTING!!!! Everyone
+- [ ] TESTING!!!! Everyone [Unit testing](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers)
 - [ ] Download data!
 
 ## First- webform

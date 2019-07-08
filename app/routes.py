@@ -64,7 +64,7 @@ def Stakeholder_log():
             db.session.commit()
             flash('Data has been submitted!')
             return redirect(url_for('index'))
-    return render_template('stakeholder_log.html', title='Log Form', form=form, post=posts)
+    return render_template('stakeholder_log.html', title='Log Form', form=form)
 
 @app.route('/display', methods=["GET","POST"])
 @login_required
@@ -83,7 +83,6 @@ def display():
             department = ["DWP", "HMRC", "BEIS", "DfS"]
         else:
             pass
-        people = User.query.all()
         shel = Logstakeholder.query.all()
         return render_template('display.html', form=form, people=people, shel=shel, department=department, stance=stance)
     else:
@@ -93,6 +92,7 @@ def display():
 @app.route('/admin', methods=['GET', 'POST'])
 def admin():
     if current_user.is_admin == "True":
+        people = User.query.all()
         form = PostForm()
         if form.validate_on_submit():
             post = Post(body=form.post.data, author=current_user)
@@ -100,7 +100,7 @@ def admin():
             db.session.commit()
             flash("Your post is now live!")
             return redirect(url_for('admin'))
-        return render_template('admin.html', title='Admin Page', form=form)
+        return render_template('admin.html', title='Admin Page', form=form, people=people)
     else:
         flask("You are not an admin, you don't have permission to view this page")
         return redirect(url_for('index'))
