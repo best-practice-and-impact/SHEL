@@ -11,7 +11,8 @@ from flask_datepicker import datepicker
 @app.route('/index')
 @login_required
 def index():
-    return render_template('index.html', title='Home')
+    posts = Post.query.all()
+    return render_template('index.html', title='Home', posts=posts)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -63,7 +64,7 @@ def Stakeholder_log():
             db.session.commit()
             flash('Data has been submitted!')
             return redirect(url_for('index'))
-    return render_template('stakeholder_log.html', title='Log Form', form=form)
+    return render_template('stakeholder_log.html', title='Log Form', form=form, post=posts)
 
 @app.route('/display', methods=["GET","POST"])
 @login_required

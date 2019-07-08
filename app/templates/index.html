@@ -9,6 +9,25 @@
       SHEL is intended to capture significant meetings with stakeholders to demonstrate our impact across government organisations and to highlight potential weak points where our impact may need strengthening. <br>
     <hr>
       Please consult the accompanying  <a href="https://share.sp.ons.statistics.gov.uk/sites/BPI/_layouts/15/WopiFrame.aspx?sourcedoc=/sites/BPI/StrategicDirection/Stakeholder_Engagement/General/Stakeholder%20log%20guidance.docx&action=default"> guidance document </a> should you need any help in completing the log.
+      </p>
+    <hr>
 
-    </p>
+      <div class="row">
+        <div class="md-col-4">
+          <table class="table table-striped" id="owned_stock_table">
+            <thead>
+              <center><h3>Upcoming Events</h3></center>
+            </thead>
+            <tbody>
+              {% for post in posts %}
+              <tr>
+                <td>{{ post.body }}</td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+
 {% endblock %}
