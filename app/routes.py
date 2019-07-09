@@ -47,11 +47,11 @@ def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data, is_admin = "False")
-        user.set_password(form.password.data)
+        #user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered user!')
-        return redirect(url_for('login'))
+        return redirect(url_for('reset_password_request'))
     return render_template('register.html', title='Register', form=form)
 
 
@@ -114,7 +114,7 @@ def register_admin():
     form = RegistrationForm()
     if form.validate_on_submit():
         user = User(username=form.username.data, email=form.email.data, is_admin = "True")
-        user.set_password(form.password.data)
+        #user.set_password(form.password.data)
         db.session.add(user)
         db.session.commit()
         flash('Congratulations, you are now a registered admin!')
