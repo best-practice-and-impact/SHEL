@@ -19,18 +19,38 @@
               <center><h3>Upcoming Events</h3></center>
             </thead>
             <tbody>
-              {% for post in posts %}
+
               <tr>
-                <td>{{ post.body }}</td>
+                <td>{{ posts[-1].body }}</td>
               </tr>
-              {% endfor %}
+
             </tbody>
           </table>
         </div>
       </div>
 
-    {% for post in posts %}
-    <h1> {{ post.body }} </h1>
-    {% endfor %}
+<br>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">{{ posts[-1].body }}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">{{ posts[-2].body }}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 {% endblock %}
