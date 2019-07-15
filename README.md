@@ -49,3 +49,13 @@ Jack - Checked that the changes run on another computer
 ## Notes while working:
 
 - The index page will not load if the Post table is empty. This is because of the negative indexing used to return the last two items from the table. To get this to work I have manually added two posts to the table in the python terminal.
+
+## Email verification setup:
+To enable email verification the following environmental variables need to be created in the terminal and exported:
+ - $ export MAIL_SERVER=smtp.googlemail.com
+ - $ export MAIL_PORT=587
+ - $ export MAIL_USE_TLS=1
+ - $ export MAIL_USERNAME=<your-gmail-username> (this can be any gmail email address)
+ - $ export MAIL_PASSWORD=<your-gmail-password> (this is the password for the account)
+
+(As the Password is then an environmental variable it will not be written in the config file.)
