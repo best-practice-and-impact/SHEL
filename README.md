@@ -43,4 +43,9 @@ username = admin
 password = 123 or admin
 
 Jack - Checking I am working on the correct branch
+
 Jack - Checked that the changes run on another computer
+
+## Notes while working:
+
+- The index page will not load if the Post table is empty. This is because of the negative indexing used to return the last two items from the table. To get this to work I have manually added two posts to the table in the python terminal.
