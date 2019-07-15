@@ -2,7 +2,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, Stakeholderlog, FilterTable, PostForm, ResetPasswordRequestForm, ResetPasswordForm
+from app.forms import LoginForm, RegistrationForm, Stakeholderlog, FilterTable, PostForm, ResetPasswordRequestForm, ResetPasswordForm, RequestUserForm, SetPasswordForm
 from app.models import User, Logstakeholder, Post
 from flask_datepicker import datepicker
 from app.email import send_password_reset_email, send_registration_request_email
@@ -139,12 +139,12 @@ def reset_password_request():
 def complete_registration_request():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
-    form = ResetPasswordRequestForm()
+    form = RequestUserForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
         if user:
             send_registration_request_email(user)
-        flash('Check your email for the instructions to reset your password')
+        flash('Check your email for the instructions to register your account')
         return redirect(url_for('login'))
     return render_template('complete_registration_request.html',
                            title='Complete Registration', form=form)
@@ -173,7 +173,7 @@ def register_new_user(token):
     user = User.verify_reset_password_token(token)
     if not user:
         return redirect(url_for('index'))
-    form = ResetPasswordForm()
+    form = SetPasswordForm()
     if form.validate_on_submit():
         user.set_password(form.password.data)
         db.session.commit()
