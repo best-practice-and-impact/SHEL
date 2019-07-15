@@ -1,11 +1,11 @@
 Dear {{ user.username }},
 
-To reset your password click on the following link:
+To register your account click on the following link:
 
-{{ url_for('reset_password', token=token, _external=True) }}
+{{ url_for('register_new_user', token=token, _external=True) }}
 
-If you have not requested a password reset simply ignore this message.
+If you have not requested this registration simply ignore this message.
 
 Sincerely,
 
-The Microblog Team
+The Stakeholder Engagement Log Team
