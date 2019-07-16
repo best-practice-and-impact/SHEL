@@ -61,7 +61,7 @@ def Stakeholder_log():
     form = Stakeholderlog()
     if form.validate_on_submit():
             log = Logstakeholder(date=form.date.data, stakeholder_person=form.stakeholder_person.data, user_id=current_user.username,
-            organisation=form.organisation.data, stance=form.stance.data, meeting=form.meeting.data, keypoints=form.keypoints.data, bpier=" , ".join(form.bpier.data) )
+            organisation=form.organisation.data, stance=form.stance.data, meeting=form.meeting.data, keypoints=form.keypoints.data, bpier=", ".join(form.bpier.data) )
             db.session.add(log)
             db.session.commit()
             flash('Data has been submitted!')
@@ -98,7 +98,7 @@ def admin():
         people = User.query.all()
         form = PostForm()
         if form.validate_on_submit():
-            post = Post(body=form.post.data, author=current_user)
+            post = Post(body=form.post.data,location=form.location.data, author=current_user)
             db.session.add(post)
             db.session.commit()
             flash("Your post is now live!")
