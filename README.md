@@ -8,12 +8,12 @@ The project has been setup.
 - [x] TABLE for the data
 - [x] Heroku deployment
 - [ ] Advanced table functions, filters, DELETE JS
-- [ ] email verification, password reset - AE, JS
-- [ ] calendar for SHEL form JH
+- [x] email verification, password reset - AE, JS
+- [x] calendar for SHEL form JH
 - [ ] error handling
 - [ ] Analytics
-- [ ] Finish webform  AE
-- [ ] Team updates form homepage JH
+- [ ] Finish webform  AE, JS
+- [x] Team updates form homepage JH, JS
 - [ ] TESTING!!!! Everyone [Unit testing](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers)
 - [ ] Download data!
 
