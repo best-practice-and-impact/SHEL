@@ -82,7 +82,8 @@ def display():
             pass
 
         if len(department) == 0:
-            department = ["DWP", "HMRC", "BEIS", "DfS"]
+            department = ['BEIS', 'Cabinet Office', 'CaCHE', 'DCMS', 'DfE', 'DfT', 'DHSC', 'DWP', 'HMRC', 'Home Office', 'MHCLG', 'MOD', 'MoJ',
+            'NWIS', 'ONS', 'OSR', 'Welsh Gov', 'Other Government Department', 'Other University', 'Other Private Institution']
         else:
             pass
         shel = Logstakeholder.query.all()
