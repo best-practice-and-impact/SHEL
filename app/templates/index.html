@@ -1,10 +1,9 @@
 {% extends "base.html" %}
 
 {% block app_content %}
-    <h1>Hi, {{ current_user.username }}!</h1> <br>
-    <img ALIGN=RIGHT src="https://gss.civilservice.gov.uk/wp-content/uploads/2018/09/Best-practice-and-Impact.png" alt="BPI logo" width="211" height="123">
+    <center><h2>Hi, {{ current_user.username }}!</h2></center>
     <p>
-    <h3> Welcome to the Stakeholder Engagement Log (SHEL) </h3> <br>
+    <center><h3> Welcome to the Stakeholder Engagement Log (SHEL) </h3></center> <br>
       An accessible webtool for use by everyone in the Best Practice & Impact Division of the Office for National Statistics.
       SHEL is intended to capture significant meetings with stakeholders to demonstrate our impact across government organisations and to highlight potential weak points where our impact may need strengthening. <br>
     <hr>
@@ -54,14 +53,9 @@
 </div>
 
 <hr>
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">Fluid jumbotron</h1>
-    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-  </div>
-</div>
-<hr>
-<p>Please do not add any contact information in to the SHEL form</p>
 
+<center><img src="https://gss.civilservice.gov.uk/wp-content/uploads/2018/09/Best-practice-and-Impact.png" class="img-fluid" alt="Responsive image", style="width: 50%; height= auto;"></center>
+
+<hr>
 
 {% endblock %}
