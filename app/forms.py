@@ -32,6 +32,7 @@ class RegistrationForm(FlaskForm):
 class PostForm(FlaskForm):
     post = TextAreaField('Home Page Events', validators=[DataRequired(), Length(min=1, max=150)])
     location = StringField("Event Location", validators=[DataRequired()])
+    date = StringField('Date, example 17/02/2019', id='datepick', validators=[DataRequired()])
     submit = SubmitField('Post')
 
 class Stakeholderlog(FlaskForm):
