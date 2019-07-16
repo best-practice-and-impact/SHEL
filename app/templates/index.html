@@ -8,7 +8,7 @@
       An accessible webtool for use by everyone in the Best Practice & Impact Division of the Office for National Statistics.
       SHEL is intended to capture significant meetings with stakeholders to demonstrate our impact across government organisations and to highlight potential weak points where our impact may need strengthening. <br>
     <hr>
-      Please consult the accompanying  <a href="https://share.sp.ons.statistics.gov.uk/sites/BPI/_layouts/15/WopiFrame.aspx?sourcedoc=/sites/BPI/StrategicDirection/Stakeholder_Engagement/General/Stakeholder%20log%20guidance.docx&action=default"> guidance document </a> should you need any help in completing the log.
+      Please consult the accompanying  <a href="https://share.sp.ons.statistics.gov.uk/sites/BPI/_layouts/15/WopiFrame.aspx?sourcedoc=/sites/BPI/StrategicDirection/Stakeholder_Engagement/General/Stakeholder%20log%20guidance.docx&action=default"> guidance document </a> should you need any help in completing the log. And avoid adding any contact information in to the SHEL form.
       </p>
     <hr>
 
@@ -18,39 +18,50 @@
             <thead>
               <center><h3>Upcoming Events</h3></center>
             </thead>
-            <tbody>
-
-              <tr>
-                <td>{{ posts[-1].body }}</td>
-              </tr>
-
-            </tbody>
           </table>
         </div>
       </div>
 
-<br>
-
 <div class="row">
-  <div class="col-sm-6">
-    <div class="card">
+  <div class="col-sm-4">
+    <div class="card" style="border: 2px solid #b4b4b4; padding: 5px;">
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
+        <center><h4 class="card-title">{{ posts[-1].body }}</h5></center>
         <p class="card-text">{{ posts[-1].body }}</p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   </div>
-  <div class="col-sm-6">
-    <div class="card">
+  <div class="col-sm-4">
+    <div class="card" style="border: 2px solid #b4b4b4; padding: 5px;"">
       <div class="card-body">
-        <h5 class="card-title">Special title treatment</h5>
+        <center><h4 class="card-title">{{ posts[-2].body }}</h5></center>
         <p class="card-text">{{ posts[-2].body }}</p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   </div>
+  <div class="col-sm-4">
+    <div class="card" style="border: 2px solid #b4b4b4; padding: 5px;"">
+      <div class="card-body">
+        <center><h4 class="card-title">{{ posts[-3].body }}</h5></center>
+        <p class="card-text">{{ posts[-3].body }}</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+
 </div>
+
+<hr>
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Fluid jumbotron</h1>
+    <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+  </div>
+</div>
+<hr>
+<p>Please do not add any contact information in to the SHEL form</p>
 
 
 {% endblock %}
