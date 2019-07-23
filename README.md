@@ -12,7 +12,7 @@ The project has been setup.
 - [x] calendar for SHEL form JH
 - [ ] error handling
 - [ ] Analytics
-- [ ] Finish webform  AE, JS
+- [x] Finish webform  AE, JS
 - [x] Team updates form homepage JH, JS
 - [ ] TESTING!!!! Everyone [Unit testing](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-viii-followers)
 - [ ] Download data!
