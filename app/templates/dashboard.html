@@ -1,6 +1,66 @@
 {% extends "base.html" %}
 {% import 'bootstrap/wtf.html' as wtf %}
 
+{% block head %}
+  {{ super() }}
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js'></script>
+  {% endblock %}
+
 {% block app_content %}
     <h1>This is the analytics dashboard for SHEL</h1>
+    <br>
+    <canvas id="chart" width="600" height="400"></canvas>
+
+    <script type="text/javascript">
+      function test_func(data) {
+          return data;
+      }
+      d = test_func({{ data|safe }});
+      console.log(Object.keys(d));
+    </script>
+
+    <script>
+      // bar chart data
+      var barData = {
+        labels : Object.keys(d),
+        datasets : [{
+          fillColor: "rgba(151,187,205,0.2)",
+          strokeColor: "rgba(151,187,205,1)",
+          pointColor: "rgba(151,187,205,1)",
+          data : Object.values(d)
+          }
+        ]
+      } // end of barData object
+    var a = Object.values(d);
+    var m = 0;
+    for(var i = 0; i < a.length; i++){
+      if(a[i] > m){
+        m = a[i];
+      } else{
+        m = m;
+      }
+    }
+    var s = 0;
+    if(m <= 10){
+      s = m + 1;
+    } else{
+      s = Math.floor((m + 1) / 2);
+    }
+     // get bar chart canvas
+     var mychart = document.getElementById("chart").getContext("2d");
+       steps = s
+       max = m + 1
+     // draw bar chart
+     new Chart(mychart).Bar(barData, {
+       scaleOverride: true,
+       scaleSteps: steps,
+       scaleStepWidth: Math.ceil(max / steps),
+       scaleStartValue: 0,
+       scaleShowVerticalLines: true,
+       scaleShowGridLines : true,
+       barShowStroke : true,
+       scaleShowLabels: true
+       }
+     );
+    </script>
 {% endblock %}

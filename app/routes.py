@@ -6,6 +6,12 @@ from app.forms import LoginForm, RegistrationForm, Stakeholderlog, FilterTable, 
 from app.models import User, Logstakeholder, Post
 from flask_datepicker import datepicker
 from app.email import send_password_reset_email, send_registration_request_email
+import json
+import matplotlib.pyplot as plt
+import seaborn as sns
+from flask import Response
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 
 @app.route('/')
@@ -186,5 +192,15 @@ def register_new_user(token):
 @app.route("/dashboard")
 @login_required
 def dashboard():
-    return render_template('dashboard.html', title='Dashboard')
-    
+    shel_data = Logstakeholder.query.all()
+    dept_breakdown = {}
+
+    for log in shel_data:
+        if log.organisation in dept_breakdown:
+            dept_breakdown[str(log.organisation)] += 1
+        else:
+            dept_breakdown[str(log.organisation)] = 1
+
+    #plot = sns.barplot(x=dept_breakdown.keys(), y=dept_breakdown.values())
+
+    return render_template('dashboard.html', title='Dashboard', data=json.dumps(dept_breakdown))
