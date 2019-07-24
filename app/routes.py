@@ -93,6 +93,7 @@ def display():
         return redirect(url_for('index'))
 
 @app.route('/admin', methods=['GET', 'POST'])
+@login_required
 def admin():
     if current_user.is_admin == "True":
         people = User.query.all()
@@ -181,3 +182,9 @@ def register_new_user(token):
         flash('Your password has been set.')
         return redirect(url_for('login'))
     return render_template('register_new_user.html', form=form)
+
+@app.route("/dashboard")
+@login_required
+def dashboard():
+    return render_template('dashboard.html', title='Dashboard')
+    
