@@ -12,11 +12,12 @@
     <canvas id="chart" width="600" height="400"></canvas>
 
     <script type="text/javascript">
+      // Import the data to plot into the window
       function test_func(data) {
           return data;
       }
       d = test_func({{ data|safe }});
-      console.log(Object.keys(d));
+      console.log(Object.keys(d)); // Check the data has been imported correctly
     </script>
 
     <script>
@@ -31,36 +32,41 @@
           }
         ]
       } // end of barData object
-    var a = Object.values(d);
-    var m = 0;
-    for(var i = 0; i < a.length; i++){
-      if(a[i] > m){
-        m = a[i];
-      } else{
-        m = m;
+      
+      var a = Object.values(d);
+      var m = 0;
+      var s = 0;
+      // find the maximum value in the dataset
+      for(var i = 0; i < a.length; i++){
+        if(a[i] > m){
+          m = a[i];
+        } else{
+          m = m;
+        }
       }
-    }
-    var s = 0;
-    if(m <= 10){
-      s = m + 1;
-    } else{
-      s = Math.ceil((m + 1) / 2);
-    }
-     // get bar chart canvas
-     var mychart = document.getElementById("chart").getContext("2d");
-       steps = s
-       max = m + 1
-     // draw bar chart
-     new Chart(mychart).Bar(barData, {
-       scaleOverride: true,
-       scaleSteps: steps,
-       scaleStepWidth: Math.ceil(max / steps),
-       scaleStartValue: 0,
-       scaleShowVerticalLines: true,
-       scaleShowGridLines : true,
-       barShowStroke : true,
-       scaleShowLabels: true
-       }
-     );
+      
+      // set the step size for the y-axis of plot
+      if(m <= 10){
+        s = m + 1;
+      } else{
+        s = Math.ceil((m + 1) / 2);
+      }
+      
+      // get bar chart canvas
+      var mychart = document.getElementById("chart").getContext("2d");
+        steps = s
+        max = m + 1
+      // draw bar chart
+      new Chart(mychart).Bar(barData, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true
+        }  
+      ); // end of Bar function call
     </script>
 {% endblock %}
