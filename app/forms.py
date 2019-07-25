@@ -92,3 +92,9 @@ class SetPasswordForm(FlaskForm):
     password2 = PasswordField(
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Set Password')
+
+
+class ChooseGraph(FlaskForm):
+    graph_type = SelectField('Variable to plot',
+    choices=[("dept", "Organisation"), ("stance", "Stance on Best Practice"), ("meet_type", "Type of Meeting")])
+    submit = SubmitField("Submit Filter")

@@ -2,16 +2,16 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, Stakeholderlog, FilterTable, PostForm, ResetPasswordRequestForm, ResetPasswordForm, RequestUserForm, SetPasswordForm
+from app.forms import LoginForm, RegistrationForm, Stakeholderlog, FilterTable, PostForm, ResetPasswordRequestForm, ResetPasswordForm, RequestUserForm, SetPasswordForm, ChooseGraph
 from app.models import User, Logstakeholder, Post
 from flask_datepicker import datepicker
 from app.email import send_password_reset_email, send_registration_request_email
 import json
-import matplotlib.pyplot as plt
-import seaborn as sns
-from flask import Response
-from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-from matplotlib.figure import Figure
+#import matplotlib.pyplot as plt
+#import seaborn as sns
+#from flask import Response
+#from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+#from matplotlib.figure import Figure
 
 
 @app.route('/')
@@ -189,7 +189,7 @@ def register_new_user(token):
         return redirect(url_for('login'))
     return render_template('register_new_user.html', form=form)
 
-@app.route("/dashboard")
+@app.route("/dashboard", methods=['GET', 'POST'])
 @login_required
 def dashboard():
     shel_data = Logstakeholder.query.all()
@@ -200,7 +200,26 @@ def dashboard():
             dept_breakdown[str(log.organisation)] += 1
         else:
             dept_breakdown[str(log.organisation)] = 1
+    # Generate the counts to make plots from
+    out_dictionary = {"dept":{}, "stance":{"1":0,"2":0,"3":0,"4":0,"5":0}, "meet_type":{}}
+    for log in shel_data:
+        if log.organisation in out_dictionary['dept']:
+            out_dictionary['dept'][str(log.organisation)] += 1
+        else:
+            out_dictionary['dept'][str(log.organisation)] = 1
 
-    #plot = sns.barplot(x=dept_breakdown.keys(), y=dept_breakdown.values())
+        out_dictionary['stance'][str(log.stance)] += 1
 
-    return render_template('dashboard.html', title='Dashboard', data=json.dumps(dept_breakdown))
+        if log.meeting in out_dictionary['meet_type']:
+            out_dictionary['meet_type'][str(log.meeting)] += 1
+        else:
+            out_dictionary['meet_type'][str(log.meeting)] = 1
+    # Import the form to select the graph
+    form = ChooseGraph()
+    graph_output = "dept"
+    if form.validate_on_submit():
+        graph_output = form.graph_type.data
+    else:
+        pass
+
+    return render_template('dashboard.html', title='Dashboard', data=json.dumps(dept_breakdown), more_data=json.dumps(out_dictionary), form=form, graph_output=graph_output)

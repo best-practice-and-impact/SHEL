@@ -17,7 +17,9 @@
           return data;
       }
       d = test_func({{ data|safe }});
-      console.log(Object.keys(d)); // Check the data has been imported correctly
+      d2 = test_func({{ more_data|safe }})
+      console.log(Object.keys(d));
+      console.log(d2); // Check the data has been imported correctly
     </script>
 
     <script>
@@ -25,37 +27,37 @@
       var barData = {
         labels : Object.keys(d),
         datasets : [{
-          fillColor: "rgba(151,187,205,0.2)",
+          fillColor: "rgba(151,187,205,0.5)",
           strokeColor: "rgba(151,187,205,1)",
           pointColor: "rgba(151,187,205,1)",
           data : Object.values(d)
           }
         ]
       } // end of barData object
-      
-      var a = Object.values(d);
-      var m = 0;
-      var s = 0;
+
+      var raw_data = Object.values(d);
+      var max_value = 0;
+      var step_value = 0;
       // find the maximum value in the dataset
-      for(var i = 0; i < a.length; i++){
-        if(a[i] > m){
-          m = a[i];
+      for(var i = 0; i < raw_data.length; i++){
+        if(raw_data[i] > max_value){
+          max_value = raw_data[i];
         } else{
-          m = m;
+          max_value = max_value;
         }
       }
-      
+
       // set the step size for the y-axis of plot
-      if(m <= 10){
-        s = m + 1;
+      if(max_value < 10){
+        step_value = max_value + 1;
       } else{
-        s = Math.ceil((m + 1) / 2);
+        step_value = Math.ceil((max_value + 1) / 2);
       }
-      
+
       // get bar chart canvas
       var mychart = document.getElementById("chart").getContext("2d");
-        steps = s
-        max = m + 1
+        steps = step_value
+        max = max_value + 1
       // draw bar chart
       new Chart(mychart).Bar(barData, {
         scaleOverride: true,
@@ -66,7 +68,73 @@
         scaleShowGridLines : true,
         barShowStroke : true,
         scaleShowLabels: true
-        }  
+        }
       ); // end of Bar function call
     </script>
+
+    <br>
+    <h3>New Graph</h3>
+    <hr>
+
+    <div class="row">
+        <div class="col-md-4 col-lg-offset-4">
+            {{ wtf.quick_form(form) }}
+        </div>
+    </div>
+
+    <hr>
+
+    <canvas id="chart2" width="600" height="400" style ="border:1px solid #000000;"></canvas>
+
+    <script>
+      // bar chart data
+      var barData = {
+        labels : Object.keys(d2.{{ graph_output }}),
+        datasets : [{
+          fillColor: "rgba(151,187,205,0.5)",
+          strokeColor: "rgba(151,187,205,1)",
+          pointColor: "rgba(151,187,205,1)",
+          data : Object.values(d2.{{ graph_output }})
+          }
+        ]
+      } // end of barData object
+
+      var raw_data = Object.values(d2.{{ graph_output }});
+      var max_value = 0;
+      var step_value = 0;
+      // find the maximum value in the dataset
+      for(var i = 0; i < raw_data.length; i++){
+        if(raw_data[i] > max_value){
+          max_value = raw_data[i];
+        } else{
+          max_value = max_value;
+        }
+      }
+
+      // set the step size for the y-axis of plot
+      if(max_value < 10){
+        step_value = max_value + 1;
+      } else{
+        step_value = Math.ceil((max_value + 1) / 2);
+      }
+
+      // get bar chart canvas
+      var mychart = document.getElementById("chart2").getContext("2d");
+        steps = step_value
+        max = max_value + 1
+      // draw bar chart
+      new Chart(mychart).Bar(barData, {
+        scaleOverride: true,
+        scaleSteps: steps,
+        scaleStepWidth: Math.ceil(max / steps),
+        scaleStartValue: 0,
+        scaleShowVerticalLines: true,
+        scaleShowGridLines : true,
+        barShowStroke : true,
+        scaleShowLabels: true
+        }
+      ); // end of Bar function call
+    </script>
+
+
 {% endblock %}
