@@ -59,3 +59,12 @@ To enable email verification the following environmental variables need to be cr
  - $ export MAIL_PASSWORD=<your-gmail-password> (this is the password for the account)
 
 (As the Password is then an environmental variable it will not be written in the config file.)
+
+## Error with forgetting admin user password
+Tried to login but could not remember password. Decided to add new admin user, with same email in terminal. This really broke the database. To solve do the following:
+- Delete the *migrations* folder from the stakeholder_log directory.
+- In terminal run: *flask db init*
+- In terminal run: *flask db migrate*
+- In terminal run: *flask db upgrade*
+
+This reinitialised the empty tables within the database and they can be repopulate either in terminal or through app.
