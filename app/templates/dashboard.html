@@ -9,8 +9,6 @@
 {% block app_content %}
     <h1>This is the analytics dashboard for SHEL</h1>
     <br>
-    <canvas id="chart" width="600" height="400"></canvas>
-
     <script type="text/javascript">
       // Import the data to plot into the window
       function test_func(data) {
@@ -18,58 +16,9 @@
       }
       d = test_func({{ data|safe }});
       d2 = test_func({{ more_data|safe }})
+      d3 = test_func({{ pie_chart_data|safe }})
       console.log(Object.keys(d));
       console.log(d2); // Check the data has been imported correctly
-    </script>
-
-    <script>
-      // bar chart data
-      var barData = {
-        labels : Object.keys(d),
-        datasets : [{
-          fillColor: "rgba(151,187,205,0.5)",
-          strokeColor: "rgba(151,187,205,1)",
-          pointColor: "rgba(151,187,205,1)",
-          data : Object.values(d)
-          }
-        ]
-      } // end of barData object
-
-      var raw_data = Object.values(d);
-      var max_value = 0;
-      var step_value = 0;
-      // find the maximum value in the dataset
-      for(var i = 0; i < raw_data.length; i++){
-        if(raw_data[i] > max_value){
-          max_value = raw_data[i];
-        } else{
-          max_value = max_value;
-        }
-      }
-
-      // set the step size for the y-axis of plot
-      if(max_value < 10){
-        step_value = max_value + 1;
-      } else{
-        step_value = Math.ceil((max_value + 1) / 2);
-      }
-
-      // get bar chart canvas
-      var mychart = document.getElementById("chart").getContext("2d");
-        steps = step_value
-        max = max_value + 1
-      // draw bar chart
-      new Chart(mychart).Bar(barData, {
-        scaleOverride: true,
-        scaleSteps: steps,
-        scaleStepWidth: Math.ceil(max / steps),
-        scaleStartValue: 0,
-        scaleShowVerticalLines: true,
-        scaleShowGridLines : true,
-        barShowStroke : true,
-        scaleShowLabels: true
-        }
-      ); // end of Bar function call
     </script>
 
     <br>
@@ -134,6 +83,28 @@
         scaleShowLabels: true
         }
       ); // end of Bar function call
+    </script>
+
+    <hr>
+
+    <canvas id="chart" width="600" height="400"></canvas>
+    <script>
+      console.log(d3)
+       var pieData = [
+        for(item in d3){
+            console.log(item)
+            value: {{count}},
+            label: "{{label}}",
+            color : "{{colors}}"
+          };
+      ];
+      // get bar chart canvas
+      var mychart = document.getElementById("chart").getContext("2d");
+      steps = 10
+      max = {{ max }}
+      // draw pie chart
+      new Chart(document.getElementById("chart").getContext("2d")).Pie(d3);
+
     </script>
 
 

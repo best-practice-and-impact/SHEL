@@ -202,6 +202,14 @@ def dashboard():
             dept_breakdown[str(log.organisation)] = 1
     # Generate the counts to make plots from
     out_dictionary = {"dept":{}, "stance":{"1":0,"2":0,"3":0,"4":0,"5":0}, "meet_type":{}}
+
+    pie_data_meet_type = {'Conference':{"count":0, "color":"red", "label":"Conference"},
+                        "Informal":{"count":0, "color":"blue", "label":"Informal"},
+                        "One to one": {"count":0, "color":"green", "label":"One to one"},
+                        "Roundtable":{"count":0, "color":"yellow", "label":"Roundtable"},
+                        "Seminar":{"count":0, "color":"pink", "label":"Seminar"},
+                        "Workshop":{"count":0, "color":"black", "label":"Workshop"}}
+
     for log in shel_data:
         if log.organisation in out_dictionary['dept']:
             out_dictionary['dept'][str(log.organisation)] += 1
@@ -214,6 +222,8 @@ def dashboard():
             out_dictionary['meet_type'][str(log.meeting)] += 1
         else:
             out_dictionary['meet_type'][str(log.meeting)] = 1
+
+        pie_data_meet_type[log.meeting]["count"] += 1
     # Import the form to select the graph
     form = ChooseGraph()
     graph_output = "dept"
@@ -222,4 +232,4 @@ def dashboard():
     else:
         pass
 
-    return render_template('dashboard.html', title='Dashboard', data=json.dumps(dept_breakdown), more_data=json.dumps(out_dictionary), form=form, graph_output=graph_output)
+    return render_template('dashboard.html', title='Dashboard', data=json.dumps(dept_breakdown), more_data=json.dumps(out_dictionary), form=form, graph_output=graph_output, pie_chart_data=json.dumps(pie_data_meet_type))
