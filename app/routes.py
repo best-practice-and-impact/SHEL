@@ -67,6 +67,17 @@ def register():
 @login_required
 def Stakeholder_log():
     form = Stakeholderlog()
+
+    p = User.query.all()
+    bpi_members = []
+
+    for u in p:
+        if u.username == "admin":
+            pass
+        else:
+            bpi_members += [(u.username, u.username)]
+
+    form.bpier.choices = bpi_members
     if form.validate_on_submit():
             log = Logstakeholder(date=form.date.data, stakeholder_person=form.stakeholder_person.data, user_id=current_user.username,
             organisation=form.organisation.data, stance=form.stance.data, meeting=form.meeting.data, keypoints=form.keypoints.data, bpier=", ".join(form.bpier.data) )

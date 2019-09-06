@@ -56,15 +56,16 @@ class Stakeholderlog(FlaskForm):
     choices=[ ('Conference', 'Conference'), ('Informal', 'Informal'), ('One to one', 'One to one'), ('Roundtable', 'Roundtable'), ('Seminar', 'Seminar'), ('Workshop', 'Workshop'),])
     keypoints = StringField('Key points from meeting', validators=[DataRequired()])
     bpier = SelectMultipleField('BPI attendee(s)',
-    choices= [("Catrin Cheung", "Catrin Cheung"), ("Ramesh  Deonarine", "Ramesh  Deonarine"), ("Anthony G  Edwards", "Anthony G  Edwards"),
-     ("Joshua  Halls", "Joshua  Halls"), ("Rebecca  Jones", "Rebecca  Jones"), ("Charles  Lound", "Charles  Lound"), ("David  Mais", "David  Mais"),
-     ("Louise  Palmer", "Louise  Palmer"), ("Gentiana  Roarson", "Gentiana  Roarson"), ("Jack  Sim", "Jack  Sim"), ("Connie  Taylor", "Connie  Taylor"),
-     ("James  Tucker", "James  Tucker"), ("Nicki  Verdeli", "Nicki  Verdeli"), ("Charlie  Wroth-Smith", "Charlie  Wroth-Smith"),
-     ("Holly  Bathgate", "Holly  Bathgate"), ("Liddy  Brankley", "Liddy  Brankley"), ("Catherine A  Davies", "Catherine A  Davies"),
-     ("Daisie  Hutchinson", "Daisie  Hutchinson"), ("Sean  Mattson", "Sean  Mattson"), ("Sofi  Nickson", "Sofi  Nickson"), ("William  Perks", "William  Perks"),
-     ("Claire  Pini", "Claire  Pini"), ("Caroline  Smith", "Caroline  Smith"), ("Eliza  Swinn", "Eliza  Swinn"), ("Michelle  Bowen", "Michelle  Bowen"),
-     ("Holly  Butcher", "Holly  Butcher"), ("Jessica  Evans", "Jessica  Evans"), ("Tegwen  Green", "Tegwen  Green"), ("Martin  Ralphs", "Martin  Ralphs"),
-     ("Hannah  Thomas", "Hannah  Thomas"), ("Ami  Treharne", "Ami  Treharne")])
+    choices= [])
+    #[("Catrin Cheung", "Catrin Cheung"), ("Ramesh  Deonarine", "Ramesh  Deonarine"), ("Anthony G  Edwards", "Anthony G  Edwards"),
+     #("Joshua  Halls", "Joshua  Halls"), ("Rebecca  Jones", "Rebecca  Jones"), ("Charles  Lound", "Charles  Lound"), ("David  Mais", "David  Mais"),
+     #("Louise  Palmer", "Louise  Palmer"), ("Gentiana  Roarson", "Gentiana  Roarson"), ("Jack  Sim", "Jack  Sim"), ("Connie  Taylor", "Connie  Taylor"),
+     #("James  Tucker", "James  Tucker"), ("Nicki  Verdeli", "Nicki  Verdeli"), ("Charlie  Wroth-Smith", "Charlie  Wroth-Smith"),
+     #("Holly  Bathgate", "Holly  Bathgate"), ("Liddy  Brankley", "Liddy  Brankley"), ("Catherine A  Davies", "Catherine A  Davies"),
+     #("Daisie  Hutchinson", "Daisie  Hutchinson"), ("Sean  Mattson", "Sean  Mattson"), ("Sofi  Nickson", "Sofi  Nickson"), ("William  Perks", "William  Perks"),
+     #("Claire  Pini", "Claire  Pini"), ("Caroline  Smith", "Caroline  Smith"), ("Eliza  Swinn", "Eliza  Swinn"), ("Michelle  Bowen", "Michelle  Bowen"),
+     #("Holly  Butcher", "Holly  Butcher"), ("Jessica  Evans", "Jessica  Evans"), ("Tegwen  Green", "Tegwen  Green"), ("Martin  Ralphs", "Martin  Ralphs"),
+     #("Hannah  Thomas", "Hannah  Thomas"), ("Ami  Treharne", "Ami  Treharne")])
     submit = SubmitField('Submit Data')
 
 #===============================================================================================================
