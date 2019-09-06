@@ -8,7 +8,7 @@ from flask_datepicker import datepicker
 from app.email import send_password_reset_email, send_registration_request_email
 import json
 
-
+#===============================================================================================================
 
 @app.route('/')
 @app.route('/index')
@@ -18,6 +18,7 @@ def index():
     event = Post.query.first()
     return render_template('index.html', title='Home', posts=posts, event=event)
 
+#===============================================================================================================
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -36,11 +37,15 @@ def login():
         return redirect(next_page)
     return render_template('login.html', title='Sign In', form=form)
 
+#===============================================================================================================
+
 @app.route('/logout1', methods=['GET', 'POST'])
 @login_required
 def logout1():
     logout_user()
     return redirect(url_for('index'))
+
+#===============================================================================================================
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -56,6 +61,7 @@ def register():
         return redirect(url_for('complete_registration_request'))
     return render_template('register.html', title='Register', form=form)
 
+#===============================================================================================================
 
 @app.route('/Stakeholder_log', methods=['GET', 'POST'])
 @login_required
@@ -69,6 +75,8 @@ def Stakeholder_log():
             flash('Data has been submitted!')
             return redirect(url_for('index'))
     return render_template('stakeholder_log.html', title='Log Form', form=form)
+
+#===============================================================================================================
 
 @app.route('/display', methods=["GET","POST"])
 @login_required
@@ -93,6 +101,8 @@ def display():
     else:
         flash("You don't have permission!")
         return redirect(url_for('index'))
+
+#===============================================================================================================
 
 @app.route('/admin', methods=['GET', "POST"])
 @login_required
@@ -143,6 +153,8 @@ def admin_homepage_maintenance():
         flask("You are not an admin, you don't have permission to view this page")
         return redirect(url_for('index'))
 
+#===============================================================================================================
+
 @app.route('/register_admin', methods=['GET', 'POST'])
 def register_admin():
     if current_user.is_authenticated:
@@ -156,6 +168,8 @@ def register_admin():
         flash('Congratulations, you are now a registered admin!')
         return redirect(url_for('login'))
     return render_template('register.html', title='Register Admin User', form=form)
+
+#===============================================================================================================
 
 @app.route('/reset_password_request', methods=['GET', 'POST'])
 def reset_password_request():
@@ -171,6 +185,8 @@ def reset_password_request():
     return render_template('reset_password_request.html',
                            title='Reset Password', form=form)
 
+#===============================================================================================================
+
 @app.route('/complete_registration_request', methods=['GET', 'POST'])
 def complete_registration_request():
     if current_user.is_authenticated:
@@ -185,6 +201,7 @@ def complete_registration_request():
     return render_template('complete_registration_request.html',
                            title='Complete Registration', form=form)
 
+#===============================================================================================================
 
 @app.route('/reset_password/<token>', methods=['GET', 'POST'])
 def reset_password(token):
@@ -201,6 +218,7 @@ def reset_password(token):
         return redirect(url_for('login'))
     return render_template('reset_password.html', form=form)
 
+#===============================================================================================================
 
 @app.route('/register_new_user/<token>', methods=['GET', 'POST'])
 def register_new_user(token):
@@ -216,6 +234,8 @@ def register_new_user(token):
         flash('Your password has been set.')
         return redirect(url_for('login'))
     return render_template('register_new_user.html', form=form)
+
+#===============================================================================================================
 
 @app.route("/dashboard", methods=['GET', 'POST'])
 @login_required
@@ -261,3 +281,5 @@ def dashboard():
         pass
 
     return render_template('dashboard.html', title='Dashboard', data=json.dumps(dept_breakdown), more_data=json.dumps(out_dictionary), form=form, graph_output=graph_output, pie_chart_data=json.dumps(pie_data_meet_type))
+
+#===============================================================================================================

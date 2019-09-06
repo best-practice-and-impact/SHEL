@@ -10,6 +10,7 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField('Remember Me')
     submit = SubmitField('Sign In')
 
+#===============================================================================================================
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -28,12 +29,18 @@ class RegistrationForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if user is not None:
             raise ValidationError('Please use a different email address.')
+        elif not email.data.endswith("@ons.gov.uk"):
+            raise ValidationError("Email address is invalid")
+
+#===============================================================================================================
 
 class PostForm(FlaskForm):
     post = TextAreaField('Home Page Events', validators=[DataRequired(), Length(min=1, max=150)])
     location = StringField("Event Location", validators=[DataRequired()])
     date = StringField('Date, example 17/02/2019', id='datepick', validators=[DataRequired()])
     submit = SubmitField('Post')
+
+#===============================================================================================================
 
 class Stakeholderlog(FlaskForm):
     date = StringField('Date, example 17/02/2019', id='datepick', validators=[DataRequired()])
@@ -60,6 +67,8 @@ class Stakeholderlog(FlaskForm):
      ("Hannah  Thomas", "Hannah  Thomas"), ("Ami  Treharne", "Ami  Treharne")])
     submit = SubmitField('Submit Data')
 
+#===============================================================================================================
+
 class FilterTable(FlaskForm):
     department = SelectMultipleField('Organisation',
     choices=[('BEIS', 'BEIS'), ('Cabinet Office', 'Cabinet Office'), ('CaCHE', 'CaCHE'), ('DCMS', 'DCMS'), ('DfE', 'DfE'), ('DfT', 'DfT'),
@@ -70,10 +79,13 @@ class FilterTable(FlaskForm):
     choices=[("0", "Select Option"),('1', 'Resistant'), ('2', 'Cautious'), ('3', 'Neutral'), ('4', 'Engaged'), ('5', 'Champion')])
     submit = SubmitField("Submit Filter")
 
+#===============================================================================================================
+
 class ResetPasswordRequestForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Request Password Reset')
 
+#===============================================================================================================
 
 class ResetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
@@ -81,11 +93,13 @@ class ResetPasswordForm(FlaskForm):
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Request Password Reset')
 
+#===============================================================================================================
 
 class RequestUserForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     submit = SubmitField('Request Password')
 
+#===============================================================================================================
 
 class SetPasswordForm(FlaskForm):
     password = PasswordField('Password', validators=[DataRequired()])
@@ -93,12 +107,17 @@ class SetPasswordForm(FlaskForm):
         'Repeat Password', validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Set Password')
 
+#===============================================================================================================
 
 class ChooseGraph(FlaskForm):
     graph_type = SelectField('Variable to plot',
     choices=[("dept", "Organisation"), ("stance", "Stance on Best Practice"), ("meet_type", "Type of Meeting")])
     submit = SubmitField("Submit Filter")
 
+#===============================================================================================================
+
 class DeleteUserForm(FlaskForm):
     user_to_delete = SelectField("Select User to Delete",choices = [])
     submit = SubmitField("Submit Delete")
+
+#===============================================================================================================

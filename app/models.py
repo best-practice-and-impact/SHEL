@@ -5,6 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from time import time
 import jwt
 
+#===============================================================================================================
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -42,6 +43,8 @@ class User(UserMixin, db.Model):
 def load_user(id):
     return User.query.get(int(id))
 
+#===============================================================================================================
+
 class Logstakeholder(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date = db.Column(db.String)
@@ -53,6 +56,8 @@ class Logstakeholder(db.Model):
     bpier = db.Column(db.String(120))
     meeting = db.Column(db.String(120))
 
+#===============================================================================================================
+
 class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
@@ -63,3 +68,5 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post {}>'.format(self.body)
+
+#===============================================================================================================
