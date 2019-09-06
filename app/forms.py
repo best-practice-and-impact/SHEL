@@ -98,3 +98,7 @@ class ChooseGraph(FlaskForm):
     graph_type = SelectField('Variable to plot',
     choices=[("dept", "Organisation"), ("stance", "Stance on Best Practice"), ("meet_type", "Type of Meeting")])
     submit = SubmitField("Submit Filter")
+
+class DeleteUserForm(FlaskForm):
+    user_to_delete = SelectField("Select User to Delete",choices = [])
+    submit = SubmitField("Submit Delete")

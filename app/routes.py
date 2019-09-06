@@ -2,16 +2,12 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user, login_required
 from werkzeug.urls import url_parse
 from app import app, db
-from app.forms import LoginForm, RegistrationForm, Stakeholderlog, FilterTable, PostForm, ResetPasswordRequestForm, ResetPasswordForm, RequestUserForm, SetPasswordForm, ChooseGraph
+from app.forms import *
 from app.models import User, Logstakeholder, Post
 from flask_datepicker import datepicker
 from app.email import send_password_reset_email, send_registration_request_email
 import json
-#import matplotlib.pyplot as plt
-#import seaborn as sns
-#from flask import Response
-#from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
-#from matplotlib.figure import Figure
+
 
 
 @app.route('/')
@@ -103,6 +99,18 @@ def display():
 def admin():
     if current_user.is_admin == "True":
         people = User.query.all()
+
+        # extract a list of all usernames
+        user_list = []
+        for user in people:
+            if user.username != current_user.username:
+                user_list += [(user.id, user.username)]
+            else:
+                pass
+
+        delete_form = DeleteUserForm()
+        delete_form.user_to_delete.choices = user_list
+
         form = PostForm()
         if form.validate_on_submit():
             post = Post(body = form.post.data, location = form.location.data, date = form.date.data, author=current_user)
@@ -110,7 +118,7 @@ def admin():
             db.session.commit()
             flash("Your post is now live!")
             return redirect(url_for('admin'))
-        return render_template('admin.html', title='Admin Page', form=form, people=people)
+        return render_template('admin.html', title='Admin Page', form=form, people=people, delete_form=delete_form)
     else:
         flask("You are not an admin, you don't have permission to view this page")
         return redirect(url_for('index'))
