@@ -112,12 +112,11 @@ def admin():
         delete_form.user_to_delete.choices = user_list
 
         if delete_form.validate_on_submit():
-            #print(delete_form.user_to_delete.data)
+
             u = User.query.filter_by(id = int(delete_form.user_to_delete.data)).all()[0]
-            print(u)
+
             db.session.delete(u)
             db.session.commit()
-            print(User.query.all())
             flash("okay they're gone")
 
             return redirect(url_for('admin'))
