@@ -94,7 +94,7 @@ def display():
         flash("You don't have permission!")
         return redirect(url_for('index'))
 
-@app.route('/admin', methods=['GET', 'POST'])
+@app.route('/admin', methods=['GET', "POST"])
 @login_required
 def admin():
     if current_user.is_admin == "True":
@@ -104,21 +104,42 @@ def admin():
         user_list = []
         for user in people:
             if user.username != current_user.username:
-                user_list += [(user.id, user.username)]
+                user_list += [(str(user.id), user.username)]
             else:
                 pass
 
         delete_form = DeleteUserForm()
         delete_form.user_to_delete.choices = user_list
 
+        if delete_form.validate_on_submit():
+            #print(delete_form.user_to_delete.data)
+            u = User.query.filter_by(id = int(delete_form.user_to_delete.data)).all()[0]
+            print(u)
+            db.session.delete(u)
+            db.session.commit()
+            print(User.query.all())
+            flash("okay they're gone")
+
+            return redirect(url_for('admin'))
+        return render_template('admin.html', title='Admin Page', people=people, delete_form=delete_form)
+    else:
+        flask("You are not an admin, you don't have permission to view this page")
+        return redirect(url_for('index'))
+
+#===============================================================================================================
+
+@app.route('/admin_homepage_maintenance', methods=['GET', 'POST'])
+@login_required
+def admin_homepage_maintenance():
+    if current_user.is_admin == "True":
         form = PostForm()
         if form.validate_on_submit():
             post = Post(body = form.post.data, location = form.location.data, date = form.date.data, author=current_user)
             db.session.add(post)
             db.session.commit()
             flash("Your post is now live!")
-            return redirect(url_for('admin'))
-        return render_template('admin.html', title='Admin Page', form=form, people=people, delete_form=delete_form)
+            return redirect(url_for('admin_homepage_maintenance'))
+        return render_template('admin_homepage_maintenance.html', title='Homepage Maintenance Page', form=form)
     else:
         flask("You are not an admin, you don't have permission to view this page")
         return redirect(url_for('index'))
