@@ -1,18 +1,27 @@
 FROM python:3.7-alpine
+RUN adduser -D microblog
+
+WORKDIR /home/microblog
 RUN apk add --no-cache \
         libressl-dev \
         musl-dev \
         libffi-dev \
-	gcc && \
-    pip3 install --no-cache-dir cryptography && \
-    apk del \
-        libressl-dev \
-        musl-dev \
-        libffi-dev \
 	gcc
-COPY /requirements.txt ./
-RUN pip3 install --no-cache-dir -r requirements.txt
-COPY . .
-EXPOSE 5000
 
-CMD ["python3", "./microblog.py"]
+COPY requirements.txt requirements.txt
+RUN python3 -m venv venv
+RUN venv/bin/pip3 install -r requirements.txt
+RUN venv/bin/pip3 install gunicorn
+
+COPY app app
+COPY migrations migrations
+COPY microblog.py config.py boot.sh ./
+RUN chmod +x boot.sh
+
+ENV FLASK_APP microblog.py
+
+RUN chown -R microblog:microblog ./
+USER microblog
+
+EXPOSE 5000
+ENTRYPOINT [ "./boot.sh" ]
