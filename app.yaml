@@ -13,7 +13,7 @@ handlers:
   script: auto
 
 beta_settings:
-  cloud_sql_instances: shel-test-deploy:europe-west2:shel-test=tcp:3306
+  cloud_sql_instances: bpi-shel:europe-west2:shel-test=tcp:3306
   
   # Remember - storing secrets in plaintext is potentially unsafe. Consider using
   # something like https://cloud.google.com/secret-manager/docs/overview to help keep
@@ -23,7 +23,7 @@ env_variables:
   DB_USER: root
   DB_PASS: BestPractice
   DB_NAME: shel-test
-  DB_HOST: 35.242.155.144:3306
+  DB_HOST: 35.246.5.180:3306
   UNAME: Marina
   UEMAIL: marina.kaur-channing@ons.gov.uk
   UPASS: BPI2020
