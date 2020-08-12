@@ -47,7 +47,7 @@ def load_user(id):
 
 class Logstakeholder(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date = db.Column(db.String)
+    date = db.Column(db.String(255))
     stakeholder_person = db.Column(db.String(120), index=True)
     organisation = db.Column(db.String(120), index=True)
     stance = db.Column(db.Integer)
@@ -62,7 +62,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(140))
     location = db.Column(db.String(140))
-    date = db.Column(db.String)
+    date = db.Column(db.String(255))
     timestamp = db.Column(db.DateTime, index=True, default=datetime.utcnow)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
 
